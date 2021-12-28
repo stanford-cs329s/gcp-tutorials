@@ -229,7 +229,7 @@ Once you have installed `gcloud`, go to your VM instance details page by clickin
 ![vm](figs/6-vm/vm7.png)
 
 This should give you a command like the following
-```
+```bash
 gcloud beta compute ssh --zone "us-west1-b" "cs329s-vm" --project "secret-primacy-302223"
 ```
 
@@ -240,32 +240,41 @@ Copy and run the command in your terminal to SSH into your VM.
 If you follow the instructions in [Set Up Google Cloud VM Image](#set-up-google-cloud-vm-image), your VM should already come with PyTorch installed.
 
 If you want to use TensorFlow without GPU, you can install the latest version.
-```
+```bash
 pip install tensorflow
 ```
-If you want to use TensorFlow with GPU, **make sure that your TensorFlow version and your CUDA version are compatible.** The current TensorFlow==2.4 uses CUDA 11, while TensorFlow<=2.3 uses CUDA 10.1.
+If you want to use TensorFlow with GPU, **make sure that your TensorFlow version and your CUDA version are compatible.** The current TensorFlow>=2.5.0 uses CUDA 11.2, TensorFlow==2.4 uses CUDA 11, and TensorFlow<=2.3 uses CUDA 10.1.
 
 
-To install [TensorFlow](https://www.tensorflow.org/) to use with CUDA 10.1, run the following command
-```
-pip install tensorflow-gpu==2.1.0
+To install [TensorFlow](https://www.tensorflow.org/) to use with CUDA 11.0, run the following command
+```bash
+pip install tensorflow-gpu==2.4.0
 ```
 
 To install [JAX](https://github.com/google/jax) without GPU, run the following command:
-```
-pip install --upgrade jax jaxlib  # CPU-only version
+```bash
+pip install --upgrade pip
+pip install --upgrade "jax[cpu]"
 ```
 
 To install [JAX](https://github.com/google/jax) with GPU, run the following command
+```bash
+pip install --upgrade pip
+# Installs the wheel compatible with CUDA 11 and cuDNN 8.2 or newer.
+pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_releases.html  # Note: wheels only available on linux.
 ```
-pip install --upgrade jax jaxlib==0.1.59+cuda101 -f https://storage.googleapis.com/jax-releases/jax_releases.html
+You may have to install JAX in a virtual environment in order to avoid package conflicts (if you see `/lib/x86_64-linux-gnu/libstdc++.so.6: version 'GLIBCXX_3.4.26' not found`):
+```bash
+python -m venv env
+source env/bin/activate
+pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
 ```
 
 ### Verification
 
 You can use the scripts in this repo to check if PyTorch/TensorFlow/JAX is sucessfully installed and can be used with GPU on the server.
 
-```
+```bash
 git clone https://github.com/stanford-cs329s/gcp-tutorials
 cd gcp-tutorials
 python check_pytorch.py
@@ -275,11 +284,11 @@ python check_jax.py
 
 ##### GPU
 To see a list of attached GPUs and their usage statistics, run
-```
+```bash
 nvidia-smi
 ```
 To monitor your GPU usage in real time, run
-```
+```bash
 watch nvidia-smi
 ```
 
@@ -301,12 +310,12 @@ We recommend using `git` for your project. You can develop locally, push your ch
 You can also transfer files from your local computer to the remote server via [`gcloud compute scp`](https://cloud.google.com/sdk/gcloud/reference/compute/scp).
 
 For example, to download files from your instance to our local computer, use:
-```
+```bash
 gcloud compute scp <user>@<instance-name>:/path/to/file.zip /local/path
 ```
 
 You can also `scp` the other way around. To upload a file to your instance:
-```
+```bash
 gcloud compute scp /local/path/file <user>@<instance-name>:/home/shared/
 ```
 
