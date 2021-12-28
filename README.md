@@ -11,7 +11,7 @@
 1. TURN OFF YOUR INSTANCE WHEN NOT IN USE.
 1. Don't use GPUs unless you have to since GPUs are much more expensive! Start with CPUs only, and if that's too slow, switch to GPUs.
 1. TURN OFF YOUR INSTANCE WHEN NOT IN USE.
-1. The link to claim your GCP credits is on [Ed]().
+1. The link to claim your GCP credits is on Ed.
 
 
 ## Table of Contents
