@@ -11,7 +11,7 @@
 1. TURN OFF YOUR INSTANCE WHEN NOT IN USE.
 1. Don't use GPUs unless you have to since GPUs are much more expensive! Start with CPUs only, and if that's too slow, switch to GPUs.
 1. TURN OFF YOUR INSTANCE WHEN NOT IN USE.
-1. The link to claim your GCP credits is on [Piazza](https://piazza.com/class/kj25zdvr9nt5ax?cid=101).
+1. The link to claim your GCP credits is on Ed.
 
 
 ## Table of Contents
@@ -59,13 +59,17 @@ This should bring you to a registration page. Fill in the necessary information 
 
 ![signup2](figs/1-signup/signup2.png)
 
-2. Choose **Account type** to be **Individual**. You will then fill in your name, address and credit card information.
+2. Verify that your phone number is correct.
 
 ![signup3](figs/1-signup/signup3.png)
 
-After that, this should bring you to the [GCP Console](https://console.cloud.google.com/).
+3. Choose **Account type** to be **Individual**. You will then fill in your name, address and credit card information.
 
 ![signup4](figs/1-signup/signup4.png)
+
+After that, this should bring you to the [GCP Console](https://console.cloud.google.com/).
+
+![signup5](figs/1-signup/signup5.png)
 
 ### Add Project Collaborators
 
@@ -85,15 +89,16 @@ After that, this should bring you to the [GCP Console](https://console.cloud.goo
 
 ![upgrade1](figs/3-upgrade/upgrade1.png)
 
-2. Click this [link](https://console.cloud.google.com/billing) or **MANAGE BILLING ACCOUNTS** if you see "This project has no billing account".
+2. Click this [link](https://console.cloud.google.com/billing) or **MANAGE BILLING ACCOUNTS**.
 
 ![upgrade2](figs/3-upgrade/upgrade2.png)
 
-3. Click into the the account to go to **BILLING ACCOUNT OVERVIEW**. In the overview page, click **UPGRADE**.
+
+3. Click into the account to go to **BILLING ACCOUNT OVERVIEW**. In the overview page, click **UPGRADE**.
 
 ![upgrade3](figs/3-upgrade/upgrade3.png)
 
-4. If the Cloud Billing account is upgraded to a paid account, you will see a **Promotional credits** info card. The [Google Cloud Free Program](https://cloud.google.com/free/docs/gcp-free-tier#how-to-upgrade) gives more details.
+4. If the Cloud Billing account is upgraded to a paid account, you will see a **Credits** info card. The [Google Cloud Free Program](https://cloud.google.com/free/docs/gcp-free-tier#how-to-upgrade) gives more details.
 
 ![upgrade4](figs/3-upgrade/upgrade4.png)
 
@@ -101,11 +106,11 @@ After that, this should bring you to the [GCP Console](https://console.cloud.goo
 
 > You should have created and logged in your GCP account registered with your personal gmail account by now.
 
-1. We will release the link to Google Cloud Education Grants page you will need to access in order to request a $50 Google Cloud Platform coupon on Piazza. You will be asked to provide your school email address and name. An email will be sent to you to confirm these details before a coupon is sent to you. **Although you will use your Stanford email to receive the credits, you should NOT apply the coupon to your Stanford email or Stanford account on GCP.** Instead, **apply the coupon to your GCP account registered with Personal GMail.**
+1. We will release the link to Google Cloud Education Grants page you will need to access in order to request a $50 Google Cloud Platform coupon on Ed. You will be asked to provide your school email address and name. An email will be sent to you to confirm these details before a coupon is sent to you. **Although you will use your Stanford email to receive the credits, you should NOT apply the coupon to your Stanford email or Stanford account on GCP.** Instead, **apply the coupon to your GCP account registered with Personal GMail.**
 
 ![credit1](figs/4-credit/credit1.png)
 
-1. After submission, you should receive a email from GCP with a link to confirm your email address. Click the link to verify your Stanford email.
+2. After submission, you should receive a email from GCP with a link to confirm your email address. Click the link to verify your Stanford email.
 
 ![credit2](figs/4-credit/credit2.png)
 
@@ -136,41 +141,47 @@ Each group member may be able to claim $50. A tip to avoid having many Billing a
 
 ## Request GPU Quota
 
-This section describes the steps necessary to set up a GPU instance. Before proceeding, check if Compute Engine is ready by visiting the [VM instance page](https://console.cloud.google.com/compute) by clicking **Compute Engine > VM instances.**
+This section describes the steps necessary to set up a GPU instance. Navigate to the Compute Engine page from **Compute Engine -> VM Instances**.
 
 ![gpu1](figs/5-gpu/gpu1.png)
 
-If you see the page above, wait for a couple of minutes. If you just registered a Google Cloud account, GCP can be slow on setting up its Compute Engine API services (this is the service that provides GPU access).
-
-You'll know that Compute Engine is ready until you see the following page.
-
 ![gpu2](figs/5-gpu/gpu2.png)
 
-Your account typically does not come with GPU quota. You have to explicitly request for it under **IAM Admin > Quotas.**
-
-**Please request the quota increase ASAP**, because they will take up between couple minutes to a week to process!
-
-1. In the Quotas page, search and select GPUs (all regions)
+Click **Enable** to enable Compute Engine API.
 
 ![gpu3](figs/5-gpu/gpu3.png)
 
-2. Click **EDIT QUOTA**, and set a new limit.
+Your account typically does not come with GPU quota. You have to explicitly request for it under **IAM & Admin > Quotas.**
+
+**Please request the quota increase ASAP**, because they will take up between couple minutes to a week to process!
+
+1. On the Quotas page, filter for **Metric: compute.googleapis.com/gpus_all_regions**.
 
 ![gpu4](figs/5-gpu/gpu4.png)
 
-Wait until GCP send you a second email to confirm your quota request. (It could take couple minutes to couple days for them to approve.)
+2. Click **EDIT QUOTA**, and set a new limit.
 
 ![gpu5](figs/5-gpu/gpu5.png)
 
-If you need more help, check out the official documentation for [Requesting Additional Quota](https://cloud.google.com/compute/quotas#requesting_additional_quota), or escalate any issues to us via a private Piazza post (this has been an issue for students in other courses in the past, and we'd like to make sure that this isn't a major blocker for you!).
+![gpu6](figs/5-gpu/gpu6.png)
+
+3. After setting a new global quota limit, filter for **Metric** again with the specific type of GPUs you wish to use (e.g. **Metric: compute.googleapis.com/nvidia_a100_gpus**) and your location (e.g. **Dimensions (e.g. location): us-west1-a**). Make sure that you have enough quota limit for the specific GPUs you wish to request, otherwise adjust the quota limit like before.
+
+![gpu7](figs/5-gpu/gpu7.png)
+
+Wait until GCP send you a second email to confirm your quota request. (It could take couple minutes to couple days for them to approve.)
+
+![gpu8](figs/5-gpu/gpu8.png)
+
+If you need more help, check out the official documentation for [Requesting Additional Quota](https://cloud.google.com/compute/quotas#requesting_additional_quota), or escalate any issues to us via a private Ed post (this has been an issue for students in other courses in the past, and we'd like to make sure that this isn't a major blocker for you!).
 
 ## Set Up Google Cloud VM Image
 
-1. In **[Dashboard](https://console.cloud.google.com/home/dashboard)** in the **Getting Started** tab, click **Explore all tutorials.**
+1. Go to the **Getting Started** tab in your **[Dashboard](https://console.cloud.google.com/home/dashboard)**. 
   
 ![vm](figs/6-vm/vm1.png)
 
-2. Click **VIEW ALL** next to Top products, and search for **Deep Learning VM**. Click into it and click **LAUNCH**.
+2. Click **VIEW ALL** next to Top products, and search for **Deep Learning VM**. Click into it and click **LAUNCH**. Make sure you enable all required APIs on the next page.
 
 ![vm](figs/6-vm/vm2.png)
 
@@ -189,15 +200,17 @@ You should see a configuration sheet with the title "New Deep Learning VM deploy
 
 3. Set `Number of GPUs` to `None` if you don't need GPUs.
 
-> For `GPU type`, `NVIDIA Tesla K80` is typically enough. `P100` and `V100` are way more expensive (check the price on the right), but also faster and has larger memory. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing). GPU drivers and CUDA will be automatically installed only if you select at least 1 GPU.
+> For `GPU type`, `NVIDIA Tesla K80` is typically enough. `P100` and `V100` are way more expensive (check the price on the right), but also faster and have larger memory. Check [pricing and spec for GCP GPUs](https://cloud.google.com/compute/gpus-pricing). GPU drivers and CUDA will be automatically installed only if you select at least 1 GPU.
 
 > Alternatively, you can choose None if you are not in need of GPU resources yet (you can always add on later) to save cost, and in this case GPU drivers and CUDA will not be installed.
 
-4. In `Frameworks` field, change `TensorFlow Enterprise 2.1 (CUDA 10.1)` to `PyTorch 1.4 + fast.ai (CUDA 10.0)`. If you wish to use Tensorflow, our setup script will help you set it up later in this tutorial.
+4. In `Frameworks` field, change `TensorFlow Enterprise 2.7 (CUDA 11.3)` to `PyTorch 1.10 (CUDA 11.0)`. If you wish to use Tensorflow, our setup script will help you set it up later in this tutorial.
 
 5. Check the box `Install NVIDIA GPU driver automatically on first startup?`.
 
 6. Check the box `Enable access to JupyterLab via URL instead of SSH. (Beta)`.
+
+![vm5](figs/6-vm/vm5.png)
 
 7. Leave all other options as default.
 
@@ -205,9 +218,7 @@ You should see a configuration sheet with the title "New Deep Learning VM deploy
 
 Once the deployment is finished. You should see a running VM with a green checkmark next to it in your [Compute Engine -> VM Instances](https://console.cloud.google.com/compute) page.
 
-![vm](figs/6-vm/vm5.png)
-
-Now, you can try connect to your VM by clicking the `SSH`. This will bring up a command line in a browser window. If you have GPU, you can run `nvidia-smi` to see your GPUs status.
+![vm](figs/6-vm/vm6.png)
 
 ## Access Your VM via `gcloud` CLI
 
@@ -215,10 +226,10 @@ While you can connect to your VM via a browser window, you may be more comfortab
 
 Once you have installed `gcloud`, go to your VM instance details page by clicking on its name. Start the VM instance first. Once it has a green check mark on, click on the drop-down arrow and select **View gcloud command** instead to retrieve the terminal command.
 
-![vm](figs/6-vm/vm6.png)
+![vm](figs/6-vm/vm7.png)
 
 This should give you a command like the following
-```
+```bash
 gcloud beta compute ssh --zone "us-west1-b" "cs329s-vm" --project "secret-primacy-302223"
 ```
 
@@ -229,34 +240,43 @@ Copy and run the command in your terminal to SSH into your VM.
 If you follow the instructions in [Set Up Google Cloud VM Image](#set-up-google-cloud-vm-image), your VM should already come with PyTorch installed.
 
 If you want to use TensorFlow without GPU, you can install the latest version.
-```
+```bash
 pip install tensorflow
 ```
-If you want to use TensorFlow with GPU, **make sure that your TensorFlow version and your CUDA version are compatible.** The current TensorFlow==2.4 uses CUDA 11, while TensorFlow<=2.3 uses CUDA 10.1.
+If you want to use TensorFlow with GPU, **make sure that your TensorFlow version and your CUDA version are compatible.** The current TensorFlow>=2.5.0 uses CUDA 11.2, TensorFlow==2.4 uses CUDA 11, and TensorFlow<=2.3 uses CUDA 10.1.
 
 
-To install [TensorFlow](https://www.tensorflow.org/) to use with CUDA 10.1, run the following command
-```
-pip install tensorflow-gpu==2.1.0
+To install [TensorFlow](https://www.tensorflow.org/) to use with CUDA 11.0, run the following command
+```bash
+pip install tensorflow-gpu==2.4.0
 ```
 
 To install [JAX](https://github.com/google/jax) without GPU, run the following command:
-```
-pip install --upgrade jax jaxlib  # CPU-only version
+```bash
+pip install --upgrade pip
+pip install --upgrade "jax[cpu]"
 ```
 
 To install [JAX](https://github.com/google/jax) with GPU, run the following command
+```bash
+pip install --upgrade pip
+# Installs the wheel compatible with CUDA 11 and cuDNN 8.2 or newer.
+pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_releases.html  # Note: wheels only available on linux.
 ```
-pip install --upgrade jax jaxlib==0.1.59+cuda101 -f https://storage.googleapis.com/jax-releases/jax_releases.html
+You may have to install JAX in a virtual environment in order to avoid package conflicts (if you see `/lib/x86_64-linux-gnu/libstdc++.so.6: version 'GLIBCXX_3.4.26' not found`):
+```bash
+python -m venv env
+source env/bin/activate
+pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
 ```
 
 ### Verification
 
 You can use the scripts in this repo to check if PyTorch/TensorFlow/JAX is sucessfully installed and can be used with GPU on the server.
 
-```
-git clone <TODO>
-cd gcloud-tutorial
+```bash
+git clone https://github.com/stanford-cs329s/gcp-tutorials
+cd gcp-tutorials
 python check_pytorch.py
 python check_tf.py
 python check_jax.py
@@ -264,11 +284,11 @@ python check_jax.py
 
 ##### GPU
 To see a list of attached GPUs and their usage statistics, run
-```
+```bash
 nvidia-smi
 ```
 To monitor your GPU usage in real time, run
-```
+```bash
 watch nvidia-smi
 ```
 
@@ -290,12 +310,12 @@ We recommend using `git` for your project. You can develop locally, push your ch
 You can also transfer files from your local computer to the remote server via [`gcloud compute scp`](https://cloud.google.com/sdk/gcloud/reference/compute/scp).
 
 For example, to download files from your instance to our local computer, use:
-```
+```bash
 gcloud compute scp <user>@<instance-name>:/path/to/file.zip /local/path
 ```
 
 You can also `scp` the other way around. To upload a file to your instance:
-```
+```bash
 gcloud compute scp /local/path/file <user>@<instance-name>:/home/shared/
 ```
 
