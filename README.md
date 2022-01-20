@@ -224,6 +224,11 @@ Once the deployment is finished. You should see a running VM with a green checkm
 
 While you can connect to your VM via a browser window, you may be more comfortable connecting to it in your local terminal via the [`gcloud` CLI](https://cloud.google.com/sdk/gcloud/reference). Follow the instructions [here](https://cloud.google.com/sdk/docs/quickstart) to install the [Google Cloud SDK](https://cloud.google.com/sdk/docs).
 
+**Note** The `gcloud` CLI (version 369.0.0) is not compatible with Python 3.10. If you run into this issue, you can resolve it by pointing the CLI to an earlier Python version.
+```
+export CLOUDSDK_PYTHON=/path/to/python-less-than-3.10
+```
+
 Once you have installed `gcloud`, go to your VM instance details page by clicking on its name. Start the VM instance first. Once it has a green check mark on, click on the drop-down arrow and select **View gcloud command** instead to retrieve the terminal command.
 
 ![vm](figs/6-vm/vm7.png)
